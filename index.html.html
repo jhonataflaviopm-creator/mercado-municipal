@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>🎉 Surpresa 🎉</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  color: white;
+}
+
+h1 {
+  font-size: 3rem;
+  opacity: 0;
+  transition: 1s;
+}
+
+p {
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: 1.5s;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: white;
+  color: #ff6b6b;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+img {
+  width: 300px;
+  border-radius: 20px;
+  margin-top: 20px;
+  display: none;
+  animation: zoom 0.5s ease;
+}
+
+@keyframes zoom {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1 id="titulo">Clique aí 👇</h1>
+  <button onclick="surpresa()">🎁 Abrir surpresa</button>
+  <p id="mensagem"></p>
+  <img id="img" src="imagem.png">
+</div>
+
+<audio id="musica" src="musica.mp3"></audio>
+
+<script>
+function surpresa() {
+
+  // Título
+  const titulo = document.getElementById("titulo");
+  titulo.innerText = "🎉 FELIZ ANIVERSÁRIO MARIA ELIZA 🎉";
+  titulo.style.opacity = 1;
+
+  // Mensagem
+  const msg = document.getElementById("mensagem");
+  msg.innerText = "O Bolsonaro e a Roberta estão orgulhosos de você 😂🔥";
+  msg.style.opacity = 1;
+
+  // Mostrar imagem
+  const img = document.getElementById("img");
+  img.style.display = "block";
+
+  // Música
+  const musica = document.getElementById("musica");
+  musica.play().catch(() => {
+    alert("Clica de novo pra tocar a música 🎵");
+  });
+
+  // Confete
+  for (let i = 0; i < 150; i++) {
+    let conf = document.createElement("div");
+    conf.classList.add("confetti");
+    conf.style.left = Math.random() * 100 + "vw";
+    conf.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+    conf.style.animationDuration = (Math.random()*3+2) + "s";
+    document.body.appendChild(conf);
+  }
+}
+</script>
+
+</body>
+</html>
